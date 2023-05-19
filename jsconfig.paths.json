@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@molecules/*": ["src/molecules/*"],
+      "@services/*": ["src/services/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@atoms/*": ["src/atoms/*"],
+      "@mocks/*": ["src/mocks/*"],
+      "@assets/*": ["src/assets/*"],
+      "@colors/*": ["src/colors/*"],
+      "@redux/*": ["src/redux-toolkit/*"],
+      "@root/*": ["src/*"]
+    }
+  }
+}
