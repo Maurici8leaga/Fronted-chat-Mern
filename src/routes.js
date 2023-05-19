@@ -3,6 +3,7 @@ import AuthTabs from '@atoms/auth/auth-tabs/AuthTabs';
 import ForgotPassword from '@atoms/auth/forgot-password/ForgotPassword';
 import ResetPassword from '@atoms/auth/reset-password/ResetPassword';
 import Streams from '@atoms/social/streams/Streams';
+import ErrorNotFound from '@atoms/error/ErrorNotFound';
 
 export const AppRouter = () => {
   const elements = useRoutes([
@@ -10,6 +11,7 @@ export const AppRouter = () => {
     // useRoutes es donde se definen las rutas de los componentes del proyecto
     {
       path: '/',
+      // en el path va la ruta que el user podra visitar
       element: <AuthTabs />
     },
     {
@@ -23,6 +25,12 @@ export const AppRouter = () => {
     {
       path: '/app/social/streams',
       element: <Streams />
+    },
+    {
+      path: '*',
+      // para esta seccion que se aplicara un NotFound , si se quiere mostrar este component se colocaa en el path "*" para que cualquier ruta
+      // que no este en este "useRoutes" le muestre este componente
+      element: <ErrorNotFound />
     }
   ]);
 

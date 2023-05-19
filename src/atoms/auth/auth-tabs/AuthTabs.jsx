@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import '@atoms/auth/auth-tabs/AuthTabs.scss';
-import backgroundImage from '@assets/images/background.jpg';
 import Login from '@atoms/auth/login/Login';
 import Register from '@atoms/auth/register/Register';
+import backgroundImage from '@assets/images/background.jpg';
+import '@atoms/auth/auth-tabs/AuthTabs.scss';
 
 // Design Pattern Stateful/Stateless: https://www.oscarblancarteblog.com/2018/09/26/componentes-con-estado-y-sin-estado/
 const AuthTabs = () => {
