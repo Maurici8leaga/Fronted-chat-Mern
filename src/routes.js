@@ -15,7 +15,7 @@ export const AppRouter = () => {
       element: <AuthTabs />
     },
     {
-      path: '/forgot/password',
+      path: '/forgot-password',
       element: <ForgotPassword />
     },
     {
