@@ -39,6 +39,8 @@
     "camelcase": 2, // definir que las variables y funciones deben ser descritas en camelCase
     "no-return-assign": 0, // que no de error si retornas directamente una asignación
     "react/react-in-jsx-scope": 0, // me permite no tener que de manera obligatoria en mis componentes agregar la importación por default de React
-    "react-display-name": 0 // mientras no le el nombre al componente que no se queje inmediante el eslint
+    "react-display-name": 0, // mientras no le el nombre al componente que no se queje inmediante el eslint
+    "no-unused-vars": "warn",
+    "no-useless-return": "off"
   }
 }
