@@ -35,7 +35,7 @@ Input.propTypes = {
   name: PropTypes.string,
   // si no se le coloca "isRequired" hace que sea opcional el prop
   type: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any, // si un proptype pasa a ser de varios tipos como string o boolean , una solucion para evitar el warning es pasarlo a tipo any
   className: PropTypes.string,
   labelText: PropTypes.string,
   placeholder: PropTypes.string,
