@@ -1,5 +1,6 @@
 import { avatarColors } from '@services/utils/static.data';
 import { floor, random } from 'lodash';
+import { addUser } from '@redux-toolkit/reducers/user/user.reducer';
 
 export class UtilsService {
   static avatarColor() {
@@ -33,5 +34,20 @@ export class UtilsService {
     context.fillText(text, canvas.width / 2, canvas.height / 2); // "fillText" es para poderle meter texto a la imagen  y que quede en el medio de ella
     // "toDataURL" se usa para devolver este elemento canvas como imagen en formato png
     return canvas.toDataURL('image/png');
+  }
+
+  // los dispatch de algun actions va ir aqui en utils.service o en un archivo de utils.service
+
+  // dispatch para el reducer de user
+  static dispatchUser(result, pageReload, dispatch, setUser) {
+    // parametros:
+    // result: es la data que se envia al backend (username, password)
+    // pageReload: es para indentificar con un boolean que se proceso correctamente la session
+    // dispatch: es el trigger de esta accion para que se pueda concretar
+    // setUser: es un prop el cual viene siendo un state que establecera el usuario actual
+
+    pageReload(true);
+    dispatch(addUser({ token: result.data.token, profile: result.data.user }));
+    setUser(result.data.user);
   }
 }
