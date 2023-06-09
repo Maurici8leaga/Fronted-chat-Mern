@@ -57,9 +57,54 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
+    "jest-canvas-mock": "2.5.1",
+    "msw": "1.2.1",
     "prettier": "2.8.8",
     "react-app-alias": "2.2.2",
     "react-app-rewired": "2.2.1",
     "sass": "1.62.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/test/*.js?(x)",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "text-summary",
+      "lcov"
+    ],
+    "moduleNameMapper": {
+      "@molecules/(.*)": [
+        "<rootDir>/src/molecules/$1"
+      ],
+      "@services/(.*)": [
+        "<rootDir>/src/services/$1"
+      ],
+      "@hooks/(.*)": [
+        "<rootDir>/src/hooks/$1"
+      ],
+      "@mocks/(.*)": [
+        "<rootDir>/src/mocks/$1"
+      ],
+      "@atoms/(.*)": [
+        "<rootDir>/src/atoms/$1"
+      ],
+      "@redux-toolkit/(.*)": [
+        "<rootDir>/src/redux-toolkit/$1"
+      ],
+      "@assets/(.*)": [
+        "<rootDir>/src/assets/$1"
+      ],
+      "@colors/(.*)": [
+        "<rootDir>/src/colors/$1"
+      ],
+      "@root/(.*)": [
+        "<rootDir>/src/$1"
+      ]
+    }
   }
 }
