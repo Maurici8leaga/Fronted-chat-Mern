@@ -72,7 +72,7 @@ const ResetPassword = () => {
                       value={password}
                       labelText="New Password"
                       placeholder="New Password"
-                      style={{ border: `${showAlert} ? '1px solid #fa9b8a': ''` }}
+                      style={{ border: `${showAlert} ? '2px inset': ''` }}
                       handleChange={(e) => setPassword(e.target.value)}
                     />
                     <Input
@@ -82,7 +82,7 @@ const ResetPassword = () => {
                       value={confirmPassword}
                       labelText="Confirm Password"
                       placeholder="Confirm Password"
-                      style={{ border: `${showAlert} ? '1px solid #fa9b8a': ''` }}
+                      style={{ border: `${showAlert} ? '2px inset': ''` }}
                       handleChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>

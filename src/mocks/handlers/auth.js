@@ -17,9 +17,21 @@ export const signUpMock = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
 });
 
 // caso para cuando el usuario se registre pero haya un error
-export const signUpMockError = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
-  const result = { message: 'Invalid Credentials' };
+export const signUpMockErrorEmailNotValid = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
+  const result = { message: 'Email must be valid' };
   return res(ctx.status(400), ctx.json(result));
 });
 
-export const authHandlers = [signUpMock, signUpMockError];
+// caso para cuando el user inicie sesion
+export const signInMock = rest.post(`${BASE_URL}/signin`, (_req, res, ctx) => {
+  const result = { message: 'User login succesfully', user: existingUser, token: userJwt };
+  return res(ctx.json(result));
+});
+
+// caso para cuando el user inicie sesion pero responda con error
+export const signInMockError = rest.post(`${BASE_URL}/signin`, (_req, res, ctx) => {
+  const result = { message: 'Invalid credentials', user: existingUser, token: userJwt };
+  return res(ctx.json(result));
+});
+
+export const authHandlers = [signUpMock, signUpMockErrorEmailNotValid, signInMock, signInMockError];
