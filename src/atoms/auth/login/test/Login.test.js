@@ -1,9 +1,17 @@
-import { customRender, fireEvent, screen, act, waitFor } from '@root/test.utils';
-import userEvent from '@testing-library/user-event';
+import { signInMock, signInMockError } from '@mocks/handlers/auth';
 import { server } from '@mocks/server';
 import Login from '@atoms/auth/login/Login';
-import { signInMock, signInMockError } from '@mocks/handlers/auth';
-import { UtilsService } from '@services/utils/utils.service';
+import { fireEvent, screen, customRender, waitFor } from '@root/test.utils';
+import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
+
+const mockedUseNavigate = jest.fn(); // para simular a useNavigate a la hora de redireccionar a otra pag
+jest.mock('react-router-dom', () => ({
+  // se usa jes.mock para emular el comportamiento del react-router-dom
+  ...jest.requireActual('react-router-dom'), // con esto mantenemos el comportamientto y funcionalidades del react-router-dom
+  useNavigate: () => mockedUseNavigate
+  // y  de esta forma reemplazamos el nombre del hook "useNavigate" por el mockedUseNavigate a la hora de redireccionar a otra pag
+}));
 
 // "describe" es el titulo del test, de lo que vas a testear
 describe('Sign In Page', () => {
@@ -47,13 +55,12 @@ describe('Sign In Page', () => {
     customRender(<Login />);
 
     // WHEN
-    const checkBoxLabel = screen.getByLabelText('Keep me signed in');
+    const checkBoxElement = screen.getByLabelText('Keep me signed in');
+    expect(checkBoxElement).not.toBeChecked();
 
     // THEN
-    expect(checkBoxLabel).not.toBeChecked();
-    fireEvent.click(checkBoxLabel);
-    // fireEvent para interactuar con el DOM .. se usa para disparar un proceso que no sea asincrono
-    expect(checkBoxLabel).toBeChecked();
+    fireEvent.click(checkBoxElement);
+    expect(checkBoxElement).toBeChecked();
   });
 
   describe('Button', () => {
@@ -123,32 +130,49 @@ describe('Sign In Page', () => {
     });
   });
 
-  // PENDING
-  // describe('Error response with Invalid Credentials', () => {
-  //   // INTEGRATION TEST 2
-  //   it('Should display error alert and border', async () => {
-  //     // GIVEN
-  //     server.use(signInMockError);
+  // INTEGRATION TEST 2
+  describe('Error', () => {
+    it('should display error alert and border', async () => {
+      // GIVEN
+      server.use(signInMockError);
+      customRender(<Login />);
 
-  //     // WHEN
-  //     jest.spyOn(UtilsService, 'avatarColor');
-  //     jest.spyOn(UtilsService, 'generateAvatar').mockReturnValue('yorman image');
-  //     customRender(<Login />);
-  //     const buttonElement = screen.getByRole('button');
-  //     const usernameElement = screen.getByLabelText('Username');
-  //     const passwordElement = screen.getByLabelText('Password');
+      // WHEN
+      const buttonElement = screen.getByRole('button');
+      const usernameElement = screen.getByLabelText('Username');
+      const passwordElement = screen.getByLabelText('Password');
+      userEvent.type(usernameElement, 'yor');
+      userEvent.type(passwordElement, 'yorman');
+      userEvent.click(buttonElement);
 
-  //     userEvent.type(usernameElement, 'yorman');
-  //     userEvent.type(passwordElement, 'yordev');
-  //     userEvent.click(buttonElement);
+      const alert = await screen.findByRole('alert');
 
-  //     const alert = await screen.findByRole('alert');
+      // THEN
+      expect(alert).toBeInTheDocument();
+      expect(alert.textContent).toEqual('Invalid credentials');
 
-  //     // THEN
-  //     expect(alert).toBeInTheDocument();
-  //     expect(alert.textContent).toEqual('Invalid Credentials');
-  //     await waitFor(() => expect(usernameElement).toHaveStyle({ border: '2px inset' }));
-  //     await waitFor(() => expect(passwordElement).toHaveStyle({ border: '2px inset' }));
-  //   });
-  // });
+      await waitFor(() => expect(usernameElement).toHaveStyle({ border: '2px inset' }));
+      await waitFor(() => expect(passwordElement).toHaveStyle({ border: '2px inset' }));
+    });
+  });
+
+  // INTEGRATION TEST 3
+  describe('Success', () => {
+    it('should navigate to streams page', async () => {
+      // GIVEN
+      server.use(signInMock);
+      customRender(<Login />);
+
+      // WHEN
+      const buttonElement = screen.getByRole('button');
+      const usernameElement = screen.getByLabelText('Username');
+      const passwordElement = screen.getByLabelText('Password');
+      userEvent.type(usernameElement, 'yorman');
+      userEvent.type(passwordElement, 'yordev');
+      userEvent.click(buttonElement);
+
+      // THEN
+      await waitFor(() => expect(mockedUseNavigate).toHaveBeenCalledWith('/app/social/streams'));
+    });
+  });
 });

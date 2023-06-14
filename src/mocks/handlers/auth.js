@@ -16,6 +16,12 @@ export const signUpMock = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
   // ctx es el contexto que espera en el que se va a responder la respuesta
 });
 
+// caso para cuando el user se registre pero halla  un error
+export const signUpMockError = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
+  const result = { message: 'Invalid credentials' };
+  return res(ctx.status(400), ctx.json(result));
+});
+
 // caso para cuando el usuario se registre pero haya un error
 export const signUpMockErrorEmailNotValid = rest.post(`${BASE_URL}/signup`, (_req, res, ctx) => {
   const result = { message: 'Email must be valid' };
@@ -24,14 +30,34 @@ export const signUpMockErrorEmailNotValid = rest.post(`${BASE_URL}/signup`, (_re
 
 // caso para cuando el user inicie sesion
 export const signInMock = rest.post(`${BASE_URL}/signin`, (_req, res, ctx) => {
-  const result = { message: 'User login succesfully', user: existingUser, token: userJwt };
+  const result = { message: 'User login successfully', user: existingUser, token: userJwt };
   return res(ctx.json(result));
 });
 
 // caso para cuando el user inicie sesion pero responda con error
 export const signInMockError = rest.post(`${BASE_URL}/signin`, (_req, res, ctx) => {
-  const result = { message: 'Invalid credentials', user: existingUser, token: userJwt };
+  const result = { message: 'Invalid credentials' };
+  return res(ctx.status(400), ctx.json(result));
+});
+
+// caso para cuando el user olvide el password
+export const forgotPasswordMock = rest.post(`${BASE_URL}/forgot-password`, (_req, res, ctx) => {
+  const result = { message: 'Password reset email sent.' };
   return res(ctx.json(result));
 });
 
-export const authHandlers = [signUpMock, signUpMockErrorEmailNotValid, signInMock, signInMockError];
+// caso para cuando el user olvide el password pero halla un error
+export const forgotPasswordMockError = rest.post(`${BASE_URL}/forgot-password`, (_req, res, ctx) => {
+  const result = { message: 'Email must be valid' };
+  return res(ctx.status(400), ctx.json(result));
+});
+
+export const authHandlers = [
+  signUpMock,
+  signUpMockError,
+  signUpMockErrorEmailNotValid,
+  signInMock,
+  signInMockError,
+  forgotPasswordMock,
+  forgotPasswordMockError
+];

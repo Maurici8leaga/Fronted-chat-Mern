@@ -115,7 +115,7 @@ describe('Register Page', () => {
     });
   });
 
-  describe('Error response with Invalid Credentials', () => {
+  describe('Errors', () => {
     // INTEGRATION TEST 2
     it('Should display error alert and border for email is not valid', async () => {
       // GIVEN
