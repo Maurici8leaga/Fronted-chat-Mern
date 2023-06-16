@@ -52,6 +52,20 @@ export const forgotPasswordMockError = rest.post(`${BASE_URL}/forgot-password`, 
   return res(ctx.status(400), ctx.json(result));
 });
 
+// caso para cuando el user solicite resetiar el password
+export const resetPasswordMock = rest.post(`${BASE_URL}/reset-password/1234567890`, (_req, res, ctx) => {
+  // OJO AQUI CON EL TOKEN FINAL, ESTE DEBE SER COLOCADO EN EL TEST QUE SE USE
+  const result = { message: 'Password successfully updated.' };
+  return res(ctx.json(result));
+});
+
+// caso para cuando el user solicite resetiar el password pero ocurra un error
+export const resetPasswordMockError = rest.post(`${BASE_URL}/reset-password/1234567890`, (_req, res, ctx) => {
+  // OJO AQUI CON EL TOKEN FINAL, ESTE DEBE SER COLOCADO EN EL TEST QUE SE USE
+  const result = { message: 'Passwords do not match' };
+  return res(ctx.status(400), ctx.json(result));
+});
+
 export const authHandlers = [
   signUpMock,
   signUpMockError,
@@ -59,5 +73,7 @@ export const authHandlers = [
   signInMock,
   signInMockError,
   forgotPasswordMock,
-  forgotPasswordMockError
+  forgotPasswordMockError,
+  resetPasswordMock,
+  resetPasswordMockError
 ];

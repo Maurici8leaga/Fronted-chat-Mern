@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import { store } from '@redux-toolkit/store';
 
@@ -23,7 +24,7 @@ Providers.propTypes = {
 const customRender = (ui, options) => render(ui, { wrapper: Providers, ...options });
 // Los componentes que se rendericen tengan contexto de manipulaciones con funcionalidades de rutas, por ej: falsear el react router, sus hooks y realizar navegaciones
 const renderWithRouter = (ui) => {
-  const history = createBrowserRouter();
+  const history = createBrowserHistory();
   return {
     history,
     ...render(ui, { wrapper: Providers })
