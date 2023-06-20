@@ -6,7 +6,7 @@ export const APP_ENVIROMENT = 'local';
 
 // metodo practico para condiciones de entorno del proyecto
 if (APP_ENVIROMENT === 'local') {
-  BASE_ENDPOINT = 'http://localhost:5000';
+  BASE_ENDPOINT = 'http://localhost:5001';
 } else if (APP_ENVIROMENT === 'staging') {
   BASE_ENDPOINT = 'https://app.stg.<your-backend-domain>'; // este se cambiara en  tal caso por el url que tenga del servidor
 } else if (APP_ENVIROMENT === 'pre-production') {

@@ -4,6 +4,7 @@ import ForgotPassword from '@atoms/auth/forgot-password/ForgotPassword';
 import ResetPassword from '@atoms/auth/reset-password/ResetPassword';
 import Streams from '@atoms/social/streams/Streams';
 import ErrorNotFound from '@atoms/error/ErrorNotFound';
+import Social from '@atoms/social/Social';
 
 export const AppRouter = () => {
   const elements = useRoutes([
@@ -23,8 +24,16 @@ export const AppRouter = () => {
       element: <ResetPassword />
     },
     {
-      path: '/app/social/streams',
-      element: <Streams />
+      path: '/app/social',
+      // path es la ruta padre
+      element: <Social />,
+      children: [
+        // de esta forma se crea una ruta hija
+        {
+          path: 'streams',
+          element: <Streams />
+        }
+      ]
     },
     {
       path: '*',
