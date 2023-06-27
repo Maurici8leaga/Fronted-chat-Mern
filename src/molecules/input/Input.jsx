@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import '@molecules/input/Input.scss';
+import '@molecules/input/input.scss';
 
 const Input = (props) => {
   const { id, name, type, value, className, labelText, placeholder, handleChange, style } = props;
