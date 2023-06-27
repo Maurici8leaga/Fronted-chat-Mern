@@ -1,12 +1,19 @@
-# Getting Started with Create React App
+# Frontend Chat MERN
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the front of a social network which consists of users being able to share everything about them such as; where they are, where they studied, their thoughts etc. They can also connect with other users, meet people and talk with them.
+
+## Get Started
+
+The first thing to do is open the terminal of your code editor of your choice and once there you will have to make sure to enter the folder called "frontend-chat-mern", to enter it you must write "cd frontend-chat-mern".
+
+```sh
+   cd ..
+   cd frontend-chat-mern
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
+### `yarn run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,57 +21,41 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+### `yarn run lint:check`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This command will review all files with a ".ts" extension in the project and provide you with information about any errors, style issues, or problematic patterns it finds in the code.
 
-### `npm run build`
+### `yarn run lint:fix`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This command will walk through all the files in the project and apply automatic fixes to styling issues and lint errors that it can fix based on configured rules. This helps keep your code consistent and free of styling issues, saving you time by not having to manually fix every issue detected by ESLint.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `yarn run prettier:check`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This command will launch Prettier and check the format of the files with the mentioned extensions. Prettier will report any format discrepancies and display a list of files that need to be adjusted based on the configured format rules.
 
-### `npm run eject`
+### `yarn run prettier:fix`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This command will run Prettier and automatically formats the files with the mentioned extensions, applying the necessary changes to make them comply with the configured format rules.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `yarn run build`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This command will run react-app-rewired and generate an optimized version of your React app ready to be deployed on a production server.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `yarn run test`
 
-## Learn More
+This command will run react-app-rewired to run tests of your React app based on the provided settings and options. A coverage report will also be generated and warnings of unreleased resources will be displayed.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## About
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was built with reduxjs/toolkit, testing-library/jest-do, testing-library/react, testing-library/user-event, axios, lodash, react, react-dom, react-icons, react-loading-skeleton, react-redux, react-router-dom, react-scripts, web-vitals, eslint, prettier, sass.
 
-### Code Splitting
+Additionally, it should be noted that for the structure of this project was implemented layered architecture with design patterns and SOLID principles. Which are;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Design patterns             |   SOLID principles    |
+| :-------------------------- | :-------------------: |
+| Stateful/Stateless          | Single responsability |
+| Render Props                |                       |
+| Observer                    |                       |
+| Atomic                      |                       |
+| High Order Components (HOC) |                       |
+| GIVEN WHEN THEN             |                       |

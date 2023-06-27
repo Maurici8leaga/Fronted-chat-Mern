@@ -64,7 +64,7 @@ export const sideBarItems = [
   },
   {
     index: 7,
-    name: 'Notifications',
+    name: 'Notify',
     url: '/app/social/notifications',
     iconName: 'FaRegBell'
   },
@@ -241,7 +241,6 @@ export const notificationItems = [
   }
 ];
 
-// los tab de arriba
 export const tabItems = (showPassword, showNotification) => {
   const items = [
     { key: 'Timeline', show: true, icon: <FaUser className="banner-nav-item-name-icon" /> },
