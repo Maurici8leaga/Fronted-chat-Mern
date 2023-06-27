@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '@molecules/button/Button';
 import Input from '@molecules/input/Input';
-import useLocalStorage from '@hooks/useLocalStorage'; // este es un custom hook
-import useSessionStorage from '@hooks/useSessionStorage'; // este es un custom hook
+import useLocalStorage from '@hooks/useLocalStorage';
+import useSessionStorage from '@hooks/useSessionStorage';
 import { authService } from '@services/api/auth/auth.service';
 import { UtilsService } from '@services/utils/utils.service';
 import '@atoms/auth/register/Register.scss';
 
 const Register = () => {
-  // states
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,25 +19,18 @@ const Register = () => {
   const [hasError, setHasError] = useState(false);
   const [user, setUser] = useState();
   const [setStoredUsername] = useLocalStorage('username', 'set');
-  // de este  custom hook  el 1er parametro es el nombre del key y el 2do es la accion que tendra
   const [setLoggedIn] = useLocalStorage('keepLoggedIn', 'set');
   const [pageReload] = useSessionStorage('pageReload', 'set');
   const dispatch = useDispatch();
-  // useDispatch es el trigger de las actiones se debe usar el para ternimar de acticar las actiones
   const navigate = useNavigate();
-  // "useNavigate" es un hook para navegar a otra pagina esto es de la version react-routter-dom 6
-  // este useNavigate espera un "to" el cual se le puede pasar "/" conn la direccion o puedes coloca "-1" para regresar una pag anterior  o "+1" para ir adelante
 
   const registerUser = async (event) => {
     setLoading(true);
-    // este "setLoading" pasara a true si el usuario lleno todos los input y le dio click al button
     event.preventDefault();
     try {
-      const avatarColor = UtilsService.avatarColor(); // este generara el color random de la img
-      const avatarImage = UtilsService.generateAvatar(username.charAt(0).toUpperCase(), avatarColor); // va a generar la primera letra en mayuscula y setiara  el color
-      // este es el actions el cual enviara la data al backend
+      const avatarColor = UtilsService.avatarColor();
+      const avatarImage = UtilsService.generateAvatar(username.charAt(0).toUpperCase(), avatarColor);
       const result = await authService.signUp({
-        // este es el body a enviar
         username,
         email,
         password,
@@ -58,10 +50,9 @@ const Register = () => {
     }
   };
 
-  // ciclos de vida
   useEffect(() => {
-    if (loading && !user) return; // si esta cargando y no hay user entonces se quedara cargando
-    if (user) navigate('/app/social/streams'); // si existe user redireccionara a la siguiente page
+    if (loading && !user) return;
+    if (user) navigate('/app/social/streams');
   }, [loading, navigate, user]);
 
   return (
@@ -108,7 +99,6 @@ const Register = () => {
           label={`${loading ? 'SIGN UP IN PROGRESS...' : 'SIGN UP'}`}
           className="auth-button button"
           disabled={!username || !email || !password}
-          // disabled es paraa que si el usuario no ha llenado los inputs este no se habilite
         />
       </form>
     </div>

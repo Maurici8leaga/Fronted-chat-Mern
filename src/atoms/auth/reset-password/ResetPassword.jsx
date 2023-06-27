@@ -8,7 +8,6 @@ import backgroundImage from '@assets/images/background.jpg';
 import '@atoms/auth/reset-password/ResetPassword.scss';
 
 const ResetPassword = () => {
-  // states
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,7 +16,6 @@ const ResetPassword = () => {
   const [responseMessage, setResponseMessage] = useState('');
 
   const [searchParams] = useSearchParams();
-  // "useSearchParams" es un hook de react-router-dom que permite tomar el parametro del URL de la pag que se encuentra
 
   const navigate = useNavigate();
 
@@ -27,17 +25,15 @@ const ResetPassword = () => {
     try {
       const body = { password, confirmPassword };
       const token = searchParams.get('token');
-      // en searchParams.get el nombre a buscar el parametro que en este caso es el token tiene que ser exactamente el mismo nombre que se. coloco en el back
 
-      // este es el actions el cual enviara la data al backend
       const response = await authService.resetPassword(token, body);
       setLoading(false);
-      setPassword(''); // borra el state para una vez enviado quede vacio
+      setPassword('');
       setConfirmPassword('');
       setShowAlert(false);
       setAlertType('alert-success');
-      setResponseMessage(response?.data?.message); // para mostrar el mensaje de cambio correcto
-      navigate('/'); // redireccionar despues de resetiar el password
+      setResponseMessage(response?.data?.message);
+      navigate('/');
     } catch (error) {
       setAlertType('alert-error');
       setLoading(false);

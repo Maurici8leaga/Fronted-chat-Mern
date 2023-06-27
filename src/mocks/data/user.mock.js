@@ -1,5 +1,3 @@
-// esta es data para hacer test
-
 export const existingUser = {
   notifications: {
     messages: true,

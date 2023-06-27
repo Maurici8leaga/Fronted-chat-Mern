@@ -1,5 +1,4 @@
 @mixin sidebar-styles {
-  // @mixin permite reciclar el estilo y poder usarlo en otros estilos de css
   background-color: var(--white-1);
   border: 1px solid var(--white-2);
   color: var(--dark-blue-2);
@@ -50,7 +49,6 @@
 
         .active {
           @include sidebar-styles;
-          // el include indica que va usar el estilo creado llamado sidebar-styles aqui
 
           .menu-icon {
             .icon {

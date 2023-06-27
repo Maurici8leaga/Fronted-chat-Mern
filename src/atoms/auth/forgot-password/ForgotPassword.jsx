@@ -8,7 +8,6 @@ import backgroundImage from '@assets/images/background.jpg';
 import '@atoms/auth/forgot-password/ForgotPassword.scss';
 
 const ForgotPassword = () => {
-  // states
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -19,13 +18,12 @@ const ForgotPassword = () => {
     setLoading(true);
     event.preventDefault();
     try {
-      // este es el actions el cual enviara la data al backend
-      const response = await authService.forgotPassword(email); // este es el body a enviar
+      const response = await authService.forgotPassword(email);
       setLoading(false);
       setEmail('');
       setShowAlert(false);
       setAlertType('alert-success');
-      setResponseMessage(response?.data?.message); // mensaje  para mostrar que se envio bien el correo
+      setResponseMessage(response?.data?.message);
     } catch (error) {
       setAlertType('alert-error');
       setLoading(false);

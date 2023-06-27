@@ -4,7 +4,6 @@ import Register from '@atoms/auth/register/Register';
 import backgroundImage from '@assets/images/background.jpg';
 import '@atoms/auth/auth-tabs/AuthTabs.scss';
 
-// Design Pattern Stateful/Stateless: https://www.oscarblancarteblog.com/2018/09/26/componentes-con-estado-y-sin-estado/
 const AuthTabs = () => {
   const [type, setType] = useState('Sign In');
 

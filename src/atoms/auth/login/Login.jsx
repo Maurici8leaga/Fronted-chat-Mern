@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-// Link es otra manera de usar un tag para navegar a otra parte de la pagina
 import { useDispatch } from 'react-redux';
 import Input from '@molecules/input/Input';
 import Button from '@molecules/button/Button';
@@ -12,7 +11,6 @@ import { authService } from '@services/api/auth/auth.service';
 import '@atoms/auth/login/Login.scss';
 
 const Login = () => {
-  // states
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
@@ -21,24 +19,20 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [user, setUser] = useState();
-  const [setStoredUsername] = useLocalStorage('username', 'set'); // este es un  custom hook
-  // de este  custom hook  el 1er parametro es el nombre del key y el 2do es la accion que tendra
+  const [setStoredUsername] = useLocalStorage('username', 'set');
   const [setLoggedIn] = useLocalStorage('keepLoggedIn', 'set');
-  const [pageReload] = useSessionStorage('pageReload', 'set'); // este es un  custom hook
+  const [pageReload] = useSessionStorage('pageReload', 'set');
+
   const navigate = useNavigate();
-  // "useNavigate" es un hook para navegar a otra pagina esto es de la version react-routter-dom 6
-  // este useNavigate espera un "to" el cual se le puede pasar "/" conn la direccion o puedes coloca "-1" para regresar una pag anterior  o "+1" para ir adelante
   const dispatch = useDispatch();
-  // useDispatch es el trigger de las actiones se debe usar el para ternimar de acticar las actiones
 
   const loginUser = async (event) => {
     setLoading(true);
     event.preventDefault();
     try {
-      // este es el actions el cual enviara la data al backend
-      const result = await authService.signIn({ username, password }); // este es el body a enviar
-      setLoggedIn(keepLoggedIn); // para recordar los datos del user y mantenerlo  logeado
-      setStoredUsername(username); // se envia al localstorage el username
+      const result = await authService.signIn({ username, password });
+      setLoggedIn(keepLoggedIn);
+      setStoredUsername(username);
       setHasError(false);
       setAlertType('alert-success');
       UtilsService.dispatchUser(result, pageReload, dispatch, setUser);
@@ -51,8 +45,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (loading && !user) return; // si esta cargando y no hay user entonces se quedara cargando
-    if (user) navigate('/app/social/streams'); // si existe user redireccionara a la siguiente page
+    if (loading && !user) return;
+    if (user) navigate('/app/social/streams');
   }, [loading, navigate, user]);
 
   return (

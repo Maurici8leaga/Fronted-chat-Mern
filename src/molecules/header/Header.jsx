@@ -25,7 +25,6 @@ const Header = () => (
               <li className="dropdown-li"></li>
             </ul>
             &nbsp;
-            {/* &nbsp es un entity para agregar espacio de separacion, en este caso con el elemento que va a estar al lado de el */}
           </li>
           <li className="header-nav-item active-item">
             <span className="header-list-name">

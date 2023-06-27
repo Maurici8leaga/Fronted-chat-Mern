@@ -3,7 +3,6 @@ import '@molecules/input/Input.scss';
 
 const Input = (props) => {
   const { id, name, type, value, className, labelText, placeholder, handleChange, style } = props;
-  // este seran los props que este component solicite para si poder sastifacer
 
   return (
     <div className="form-row">
@@ -27,15 +26,11 @@ const Input = (props) => {
   );
 };
 
-// Design Pattern Observer: https://refactoring.guru/es/design-patterns/observer
 Input.propTypes = {
-  // Proptypes ya viene incorporado en. react
-  // PropTypes usualmente lo recibe los hijos , son como las interfaces de typescript
   id: PropTypes.string,
   name: PropTypes.string,
-  // si no se le coloca "isRequired" hace que sea opcional el prop
   type: PropTypes.string,
-  value: PropTypes.any, // si un proptype pasa a ser de varios tipos como string o boolean , una solucion para evitar el warning es pasarlo a tipo any
+  value: PropTypes.any,
   className: PropTypes.string,
   labelText: PropTypes.string,
   placeholder: PropTypes.string,
